@@ -13,10 +13,8 @@ module.exports = function solveSudoku(matrix) {
   function getValues(matrix) {
     let emptyValuesList = getEmptyValues(matrix);
     if (emptyValuesList.length === 0) return matrix;
-    
     let [row, column] = emptyValuesList[0];
     let candidatesList = getCandidatesList(matrix, row, column);
-    
     let j = 0;
     while (j <= candidatesList.length - 1) {
       matrix[row][column] = candidatesList[j];
@@ -37,8 +35,8 @@ module.exports = function solveSudoku(matrix) {
         let [row, column] = emptyValuesList[i];
         if (matrix[row][column] === 0
           && getCandidatesList(matrix, row, column).length === 1) {
-          matrix[row][column] = getCandidatesList(matrix, row, column)[0];
-          counter++;
+            matrix[row][column] = getCandidatesList(matrix, row, column)[0];
+            counter++;
         }
       }
     } while (counter !== 0);
@@ -73,11 +71,9 @@ module.exports = function solveSudoku(matrix) {
     let areaBlock = [];
     let columnBlock =[];
     let rowBlock = matrix[row];
-    
     for (let i = 0; i < 9; i++) {
       columnBlock.push(matrix[i][column]);
     }
-
     let rowAreaBorder = Math.floor(row / 3) * 3;
     let columnAreaBorder = Math.floor(column / 3) * 3;
     for (let i = rowAreaBorder; i < rowAreaBorder + 3; i++) {
@@ -85,10 +81,8 @@ module.exports = function solveSudoku(matrix) {
         areaBlock.push(matrix[i][j]);
       }
     }
-   
     return rowBlock.includes(value)
           || columnBlock.includes(value)
           || areaBlock.includes(value);
   }
-
 }
